@@ -1,0 +1,214 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #465c71;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #ffa200;
+}
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.producto-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+    text-align: center;
+}
+
+.producto-card:hover {
+    transform: scale(1.02);
+}
+
+.producto-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.producto-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.info {
+    padding: 15px;
+}
+
+.titulo {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.precio {
+    color: #00a884; /* Verde WhatsApp */
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.btn-whatsapp {
+    background-color: #25d366;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
+}
+/* Contenedor relativo para fijar los límites de la imagen */
+.contenedor-imagen {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    background-color: #000; /* Fondo negro de respaldo para el contraste */
+}
+
+/* Ajuste de la imagen base */
+.contenedor-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease; /* Efecto de zoom para la foto */
+}
+
+/* Al pasar el cursor, la imagen hace un ligero zoom hacia atrás */
+.contenedor-imagen:hover img {
+    transform: scale(1.1);
+}
+
+/* El recuadro de descripción SUPER LLAMATIVO (oculto por defecto) */
+.descripcion-flotante {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(28, 30, 33, 0.92); /* Fondo oscuro e intenso */
+    color: #ffffff;
+    
+    /* Centrado perfecto del texto largo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box; /* Evita que el padding deforme el tamaño */
+    
+    /* Tipografía más grande y legible */
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-align: center;
+    
+    /* Estado inicial: invisible y encogido */
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Al pasar el cursor, la descripción se despliega en grande */
+.contenedor-imagen:hover .descripcion-flotante {
+    opacity: 1;
+    transform: scale(1); /* Vuelve a su tamaño real ocupando toda la foto */
+}
+
+/* Contenedor general del botón flotante */
+.btn-flotante-wa {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+/* El cuadro de texto de ayuda flotante */
+.texto-ayuda {
+    background-color: #ffffff;
+    color: #333333;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin-right: 10px;
+    opacity: 1;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+/* El círculo verde adaptado al ícono oficial */
+.icono-wa {
+    width: 60px;
+    height: 60px;
+    background-color: #25d366; /* Verde oficial WhatsApp */
+    color: #ffffff; /* Color del logotipo interior */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: pulsoEfecto 2s infinite; /* Mantiene el efecto de ondas */
+}
+
+/* Centrado del SVG interno */
+.icono-wa svg {
+    display: block;
+}
+
+
+/* Efectos al pasar el cursor (Hover) */
+.btn-flotante-wa:hover .icono-wa {
+    transform: scale(1.1);
+    background-color: #20ba5a;
+}
+
+.btn-flotante-wa:hover .texto-ayuda {
+    background-color: #f8fafc;
+    transform: translateX(-3px);
+}
+
+/* Animación sutil de pulso para captar la atención */
+@keyframes pulsoEfecto {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Optimización para pantallas muy pequeñas (oculta el texto, deja solo el icono) */
+@media (max-width: 480px) {
+    .texto-ayuda {
+        display: none;
+    }
+    .btn-flotante-wa {
+        bottom: 20px;
+        right: 20px;
+    }
+}
